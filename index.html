@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taktiktavla</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1>Taktiktavla</h1>
+
+      <div class="toolbar" aria-label="Verktyg">
+        <button id="addRed" class="btn red-btn" type="button">Röd</button>
+        <button id="addBlue" class="btn blue-btn" type="button">Blå</button>
+        <button id="addYellow" class="btn yellow-btn" type="button">Gul MV</button>
+        <button id="addRedSub" class="btn red-sub-btn" type="button">Röd avb</button>
+        <button id="addBlueSub" class="btn blue-sub-btn" type="button">Blå avb</button>
+        <button id="saveBoard" class="btn" type="button">Spara</button>
+        <button id="clearBoard" class="btn danger" type="button">Rensa</button>
+      </div>
+
+      <p id="saveStatus" class="save-status">Redo</p>
+    </header>
+
+    <main class="main">
+      <section class="canvas-shell" aria-label="Taktiktavla">
+        <div id="canvas" class="canvas">
+          <aside class="bench-area" aria-label="Avbytare">
+            <div class="bench-title">Avbytare</div>
+          </aside>
+
+          <div id="board" class="board">
+            <svg class="pitch-lines" viewBox="0 0 840 1200" preserveAspectRatio="none" aria-hidden="true">
+              <rect x="35" y="35" width="770" height="1130" rx="4"></rect>
+
+              <line x1="35" y1="600" x2="805" y2="600"></line>
+              <circle cx="420" cy="600" r="82"></circle>
+              <circle cx="420" cy="600" r="4" class="filled"></circle>
+
+              <rect x="240" y="35" width="360" height="170"></rect>
+              <rect x="320" y="35" width="200" height="72"></rect>
+              <circle cx="420" cy="150" r="4" class="filled"></circle>
+              <path d="M 320 205 A 105 105 0 0 0 520 205"></path>
+
+              <rect x="240" y="995" width="360" height="170"></rect>
+              <rect x="320" y="1093" width="200" height="72"></rect>
+              <circle cx="420" cy="1050" r="4" class="filled"></circle>
+              <path d="M 320 995 A 105 105 0 0 1 520 995"></path>
+
+              <path d="M95 35 Q95 95 35 95"></path>
+              <path d="M745 35 Q745 95 805 95"></path>
+              <path d="M95 1165 Q95 1105 35 1105"></path>
+              <path d="M745 1165 Q745 1105 805 1105"></path>
+            </svg>
+          </div>
+
+          <div id="magnetsLayer" class="magnets-layer"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
