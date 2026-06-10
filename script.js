@@ -1,4 +1,4 @@
-const STORAGE_KEY = "simple-tactic-board-subs-v1";
+const STORAGE_KEY = "simple-tactic-board-iphone-fix-v1";
 
 const canvas = document.getElementById("canvas");
 const layer = document.getElementById("magnetsLayer");
@@ -21,10 +21,7 @@ function uid() {
 }
 
 function setStatus(text) {
-  if (!saveStatus) {
-    return;
-  }
-
+  if (!saveStatus) return;
   saveStatus.textContent = text;
   window.clearTimeout(statusTimer);
   statusTimer = window.setTimeout(() => {
@@ -43,9 +40,7 @@ function loadMagnets() {
 
 function persistMagnets(showMessage = false) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(magnets));
-  if (showMessage) {
-    setStatus("Sparat");
-  }
+  if (showMessage) setStatus("Sparat");
 }
 
 function getInitials(name) {
@@ -111,10 +106,7 @@ function render() {
     el.addEventListener("pointerdown", startDrag);
     el.addEventListener("dblclick", () => editMagnet(magnet.id));
     el.addEventListener("keydown", event => {
-      if (event.key === "Enter") {
-        editMagnet(magnet.id);
-      }
-
+      if (event.key === "Enter") editMagnet(magnet.id);
       if (event.key === "Delete" || event.key === "Backspace") {
         magnets = magnets.filter(item => item.id !== magnet.id);
         persistMagnets(true);
@@ -128,9 +120,7 @@ function render() {
 
 function askForMagnetData(defaultName = "", defaultMarker = "") {
   const name = window.prompt("Namn på magneten:", defaultName);
-  if (!name || !name.trim()) {
-    return null;
-  }
+  if (!name || !name.trim()) return null;
 
   const marker = window.prompt(
     "Nummer eller text i magneten. Lämna tomt för initialer:",
@@ -145,20 +135,13 @@ function askForMagnetData(defaultName = "", defaultMarker = "") {
 
 function addMagnet(color, substitute = false) {
   const data = askForMagnetData();
-  if (!data) {
-    return;
-  }
+  if (!data) return;
 
   const count = magnets.length;
   const offset = count % 10;
 
-  const defaultX = substitute
-    ? 15
-    : 58 + ((offset % 5) - 2) * 6;
-
-  const defaultY = substitute
-    ? 18 + (count % 8) * 8
-    : 50 + (Math.floor(offset / 5) - 1) * 8;
+  const defaultX = substitute ? 12 : 62 + ((offset % 5) - 2) * 5;
+  const defaultY = substitute ? 16 + (count % 8) * 8 : 50 + (Math.floor(offset / 5) - 1) * 8;
 
   magnets.push({
     id: uid(),
@@ -176,14 +159,10 @@ function addMagnet(color, substitute = false) {
 
 function editMagnet(id) {
   const magnet = magnets.find(item => item.id === id);
-  if (!magnet) {
-    return;
-  }
+  if (!magnet) return;
 
   const data = askForMagnetData(magnet.name, magnet.marker || "");
-  if (!data) {
-    return;
-  }
+  if (!data) return;
 
   magnet.name = data.name;
   magnet.marker = data.marker;
@@ -192,27 +171,18 @@ function editMagnet(id) {
 }
 
 function startDrag(event) {
-  if (event.target.closest(".delete-magnet")) {
-    return;
-  }
+  if (event.target.closest(".delete-magnet")) return;
 
   const el = event.currentTarget;
   const id = el.dataset.id;
   const magnet = magnets.find(item => item.id === id);
-
-  if (!magnet) {
-    return;
-  }
+  if (!magnet) return;
 
   event.preventDefault();
   el.setPointerCapture(event.pointerId);
   el.classList.add("dragging");
 
-  activeDrag = {
-    id,
-    pointerId: event.pointerId,
-    element: el
-  };
+  activeDrag = { id, pointerId: event.pointerId, element: el };
 
   moveMagnet(event);
   el.addEventListener("pointermove", moveMagnet);
@@ -221,9 +191,7 @@ function startDrag(event) {
 }
 
 function moveMagnet(event) {
-  if (!activeDrag) {
-    return;
-  }
+  if (!activeDrag) return;
 
   const rect = canvas.getBoundingClientRect();
   const x = ((event.clientX - rect.left) / rect.width) * 100;
@@ -233,9 +201,7 @@ function moveMagnet(event) {
   const clampedY = Math.max(3, Math.min(97, y));
 
   const magnet = magnets.find(item => item.id === activeDrag.id);
-  if (!magnet) {
-    return;
-  }
+  if (!magnet) return;
 
   magnet.x = Number(clampedX.toFixed(2));
   magnet.y = Number(clampedY.toFixed(2));
@@ -245,9 +211,7 @@ function moveMagnet(event) {
 }
 
 function endDrag() {
-  if (!activeDrag) {
-    return;
-  }
+  if (!activeDrag) return;
 
   const el = activeDrag.element;
   el.classList.remove("dragging");
@@ -265,19 +229,12 @@ addBlue.addEventListener("click", () => addMagnet("blue", false));
 addYellow.addEventListener("click", () => addMagnet("yellow", false));
 addRedSub.addEventListener("click", () => addMagnet("red", true));
 addBlueSub.addEventListener("click", () => addMagnet("blue", true));
-
 saveBoard.addEventListener("click", () => persistMagnets(true));
 
 clearBoard.addEventListener("click", () => {
-  if (!magnets.length) {
-    return;
-  }
-
+  if (!magnets.length) return;
   const ok = window.confirm("Vill du rensa hela tavlan?");
-  if (!ok) {
-    return;
-  }
-
+  if (!ok) return;
   magnets = [];
   persistMagnets(true);
   render();
