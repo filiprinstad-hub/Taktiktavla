@@ -445,7 +445,8 @@ input {
 
 @media (max-width: 760px) {
   .app {
-    padding: calc(5px + env(safe-area-inset-top)) 6px calc(5px + env(safe-area-inset-bottom));
+    height: 100svh;
+    padding: calc(5px + env(safe-area-inset-top)) 6px calc(8px + env(safe-area-inset-bottom));
     gap: 4px;
   }
 
@@ -474,6 +475,10 @@ input {
     --gap: 6px;
   }
 
+  .bench-area {
+    min-height: 108px;
+  }
+
   .delete-magnet {
     opacity: 1;
   }
@@ -496,8 +501,12 @@ input {
   }
 
   .canvas {
-    --bench-height: 96px;
+    --bench-height: 104px;
     --gap: 5px;
+  }
+
+  .bench-area {
+    min-height: 104px;
   }
 
   .bench-title {
@@ -550,8 +559,12 @@ input {
   }
 
   .canvas {
-    --bench-height: 88px;
+    --bench-height: 96px;
     --gap: 5px;
+  }
+
+  .bench-area {
+    min-height: 96px;
   }
 
   .magnet-disc {
@@ -563,5 +576,19 @@ input {
   .magnet-name {
     font-size: 9px;
     max-width: 70px;
+  }
+}
+
+/* Balanserad iPhone-layout:
+   ingen stor bottenmarginal, men avbytarfältet reserveras i själva grid-layouten. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 760px) {
+    .app {
+      height: 100svh;
+    }
+
+    .canvas {
+      --bench-height: 106px;
+    }
   }
 }

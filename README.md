@@ -31,3 +31,8 @@ Uppdaterad version av taktiktavlan med bättre mobilvy och fler funktioner.
 ## Senaste fix
 
 11. Avbytarfältet skalas nu alltid fram i mobilvyn så det syns tydligt under planen.
+
+
+## Balanserad iPhone-fix
+
+Den här versionen tar bort den för stora bottenmarginalen från föregående iPhone-fix. Planen blir större igen, men avbytarfältet reserveras fortfarande i layouten så det ska synas under planen.
