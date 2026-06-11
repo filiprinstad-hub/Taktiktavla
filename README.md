@@ -28,11 +28,6 @@ Uppdaterad version av taktiktavlan med bättre mobilvy och fler funktioner.
 9. Tavlan sparas i localStorage.
 
 
-## Senaste fix
+## Fill-fix
 
-11. Avbytarfältet skalas nu alltid fram i mobilvyn så det syns tydligt under planen.
-
-
-## Balanserad iPhone-fix
-
-Den här versionen tar bort den för stora bottenmarginalen från föregående iPhone-fix. Planen blir större igen, men avbytarfältet reserveras fortfarande i layouten så det ska synas under planen.
+Den här versionen tar bort dödytan under avbytarfältet genom att låta planen beräknas från tillgänglig höjd och lägga avbytarfältet direkt efter planen.
