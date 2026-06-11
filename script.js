@@ -43,6 +43,8 @@ const HALF_PITCH_SVG = `
 </svg>`;
 
 const board = document.getElementById("board");
+
+const boardFrame = document.querySelector(".board-frame");
 const canvas = document.getElementById("canvas");
 const layer = document.getElementById("magnetsLayer");
 const saveStatus = document.getElementById("saveStatus");
@@ -149,6 +151,18 @@ function getInitials(name) {
 function getDisplayText(magnet) {
   const text = magnet.marker && magnet.marker.trim();
   return text || getInitials(magnet.name);
+}
+
+
+function fitBoardToFrame() {
+  if (!boardFrame || !board) return;
+  const rect = boardFrame.getBoundingClientRect();
+  if (!rect.width || !rect.height) return;
+  const ratio = 7 / 10;
+  const width = Math.min(rect.width, rect.height * ratio);
+  const height = width / ratio;
+  board.style.width = `${Math.max(1, Math.floor(width))}px`;
+  board.style.height = `${Math.max(1, Math.floor(height))}px`;
 }
 
 function renderPitch() {
@@ -524,6 +538,9 @@ document.addEventListener("keydown", event => {
 
 newBoardBtn.addEventListener("click", startNewBoard);
 continueBoardBtn.addEventListener("click", continueSavedBoard);
+
+window.addEventListener("resize", fitBoardToFrame);
+window.addEventListener("orientationchange", () => setTimeout(fitBoardToFrame, 120));
 
 renderPitch();
 updateControls();

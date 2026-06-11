@@ -149,6 +149,7 @@ input {
   display: grid;
   place-items: center;
   overflow: hidden;
+  padding-bottom: 2px;
 }
 
 .board {
@@ -192,6 +193,7 @@ input {
 
 .bench-area {
   width: 100%;
+  min-height: var(--bench-height);
   height: 100%;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent), var(--bench);
   border-radius: 12px;

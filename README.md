@@ -26,3 +26,8 @@ Uppdaterad version av taktiktavlan med bättre mobilvy och fler funktioner.
 7. Dubbelklick på magnet ändrar namn och siffra eller text.
 8. × tar bort magnet när tavlan inte är låst.
 9. Tavlan sparas i localStorage.
+
+
+## Senaste fix
+
+11. Avbytarfältet skalas nu alltid fram i mobilvyn så det syns tydligt under planen.
