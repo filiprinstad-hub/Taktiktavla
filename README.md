@@ -31,8 +31,3 @@ Uppdaterad version av taktiktavlan med bättre mobilvy och fler funktioner.
 ## Senaste fix
 
 11. Avbytarfältet skalas nu alltid fram i mobilvyn så det syns tydligt under planen.
-
-
-## iPhone safe-fix
-
-Den här versionen reserverar extra utrymme längst ner för iPhones webbläsarfält eller inbyggda webbläsare, så att avbytarfältet inte hamnar bakom nederkanten.

@@ -444,13 +444,8 @@ input {
 }
 
 @media (max-width: 760px) {
-  :root {
-    --mobile-bottom-reserve: 86px;
-  }
-
   .app {
-    height: calc(100svh - var(--mobile-bottom-reserve));
-    padding: calc(5px + env(safe-area-inset-top)) 6px 6px;
+    padding: calc(5px + env(safe-area-inset-top)) 6px calc(5px + env(safe-area-inset-bottom));
     gap: 4px;
   }
 
@@ -475,14 +470,8 @@ input {
 
   .canvas {
     width: 100%;
-    --bench-height: 128px;
-    --gap: 7px;
-  }
-
-  .bench-area {
-    min-height: 128px;
-    outline: 2px solid rgba(0, 0, 0, 0.06);
-    outline-offset: -2px;
+    --bench-height: 108px;
+    --gap: 6px;
   }
 
   .delete-magnet {
@@ -491,10 +480,6 @@ input {
 }
 
 @media (max-width: 420px) {
-  :root {
-    --mobile-bottom-reserve: 96px;
-  }
-
   .btn {
     padding: 5px 7px;
     font-size: 11px;
@@ -511,8 +496,8 @@ input {
   }
 
   .canvas {
-    --bench-height: 122px;
-    --gap: 6px;
+    --bench-height: 96px;
+    --gap: 5px;
   }
 
   .bench-title {
@@ -532,9 +517,9 @@ input {
   }
 
   .magnet-disc {
-    width: clamp(27px, 4.5svh, 36px);
-    height: clamp(27px, 4.5svh, 36px);
-    font-size: 11px;
+    width: clamp(28px, 4.9svh, 38px);
+    height: clamp(28px, 4.9svh, 38px);
+    font-size: 12px;
   }
 
   .magnet-name {
@@ -565,34 +550,18 @@ input {
   }
 
   .canvas {
-    --bench-height: 116px;
-    --gap: 6px;
-  }
-
-  .bench-area {
-    min-height: 116px;
+    --bench-height: 88px;
+    --gap: 5px;
   }
 
   .magnet-disc {
-    width: clamp(26px, 4.4svh, 34px);
-    height: clamp(26px, 4.4svh, 34px);
+    width: clamp(27px, 4.8svh, 36px);
+    height: clamp(27px, 4.8svh, 36px);
     font-size: 11px;
   }
 
   .magnet-name {
     font-size: 9px;
     max-width: 70px;
-  }
-}
-
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 760px) {
-    .app {
-      height: calc(100svh - 104px);
-    }
-
-    .canvas {
-      --bench-height: 130px;
-    }
   }
 }
